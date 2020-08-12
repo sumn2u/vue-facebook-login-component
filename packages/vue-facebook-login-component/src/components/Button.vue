@@ -19,10 +19,10 @@
         name="login"
         v-bind="scope"
         v-if="scope.idle && scope.disconnected"
-      >Continue with Facebook</slot>
-      <slot name="logout" v-bind="scope" v-if="scope.idle && scope.connected">Logout</slot>
-      <slot name="working" v-bind="scope" v-if="scope.working">Please wait...</slot>
-      <slot name="error" v-bind="scope" v-if="scope.hasError">⛔ Error</slot>
+      >{{translation.loginText}}</slot>
+      <slot name="logout" v-bind="scope" v-if="scope.idle && scope.connected">{{translation.logoutText}}</slot>
+      <slot name="working" v-bind="scope" v-if="scope.working">{{translation.loadingText}}</slot>
+      <slot name="error" v-bind="scope" v-if="scope.hasError">{{translation.errorText}}</slot>
     </span>
     <slot name="after" v-bind="scope"></slot>
   </button>
@@ -48,6 +48,15 @@ export default {
     },
     logoClass: {
       type: String
+    },
+    translation:{
+      type: Object,
+      default: () => ({
+        loginText:"Continue with Facebook",
+        logoutText:"Logout",
+        loadingText: "Please wait...",
+        errorText:"⛔ Error"
+      })
     },
     logoStyle: {
       type: Object,
